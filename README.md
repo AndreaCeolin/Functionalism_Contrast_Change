@@ -1,2 +1,2 @@
-# Functionalism_LexicalContrast_SoundChange
+# Functionalism_Contrast_Change
 This repository contains the software and the material developed for my PhD dissertation. 
