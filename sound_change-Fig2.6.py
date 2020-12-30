@@ -13,17 +13,18 @@ import numpy as np
 
 This part defines the alphabet of the language, and maps symbols to indexes.
 
-The vowel dictionary maps 15 different symbols onto different indexes.
-The consonant dictionary maps 26 different symbols onto different indexes.
+In this version, the vowel dictionary maps 30 different symbols onto different indexes and
+the consonant dictionary maps 52 different symbols onto different indexes.
 '''
 
 vowels = {'i': 0, 'e': 1, 'a': 2, 'o': 3, 'u': 4, 'ou':5, 'ei':6, 'ea':7, 'ee':8, 'oo':9, 'ai':10, 'oa':11,
-          'oi':12, 'io':13, 'ie':14}
-
-
+          'oi':12, 'io':13, 'ie':14, '1':15, '2':16, '3':17, '4':18, '5':19, '6':20, '7':21, '8':22, '9':23,
+          '10':24, '11':25, '12':26, '13':27, '14':28, '15':29}
 consonants = {'m': 0, 'p':1, 'b':2, 'f': 3, 'v': 4, 'd': 5, 't': 6, 'l': 7, 'n': 8, 'r': 9, 's': 10, 'k': 11,
               'y': 12, 'g': 13, 'j':14, 'h': 15, 'c':16, ' ':17, 'th':18, 'sh':19, 'wh':20, 'ch':21, 'tw':22,
-              'x':23, 'w':24, 'z':25}
+              'x':23, 'w':24, 'z':25, '1':26, '2':27, '3':28, '4':29, '5':30, '6':31, '7':32, '8':33, '9':34,
+          '10':35, '11':36, '12':37, '13':38, '14':39, '15':40, '16':41, '17':42, '18':43, '19':44, '20':45,
+              '21':46, '22':47, '23':48, '24':49, '25':50, '26':51}
 
 '''
 With this dictionary, we can represent each word as an integer tuple. Words are initially read from a text file

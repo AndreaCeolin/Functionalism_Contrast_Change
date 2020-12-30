@@ -108,6 +108,19 @@ def average(wordlist):
 
 print(average(wordlist))
 
+'''
+In this specific setting, we need a helper function that assigns weights to the sound change functions.
+This is obtained by repeating some of the functions in the 'functions' list of main().
+'''
+
+def weigh(itemlist):
+    new_list = []
+    for index, item in enumerate(random.sample(itemlist, len(itemlist))):
+        #The first function is not repeated, the second is added twice, the third is added three times, and so on.
+        new_list += [item] * (index+1)
+    return new_list
+
+
 
 '''
 2. SOUND CHANGE FUNCTIONS
@@ -276,7 +289,7 @@ def main(file, n_changes, iterations):
         onset, nucleus, coda = get_onset(lexicon), get_nucleus(lexicon), get_coda(lexicon)
         #this line will be used to define the sound change functions used in the simulation and their weight
         #with this setting, each function is equally weighted
-        functions = [change_onset, change_nucleus, change_nucleus2, change_coda]
+        functions = weigh([change_onset, change_nucleus, change_nucleus2, change_coda])
         #we initialize lists that will keep track of the number of the iteration, the number of the phonemes,
         #and the average distance
         x_axis = [0]
