@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-
-
 '''
 1. ALPHABET and LEXICON
 
@@ -121,25 +119,23 @@ def change_onset():
     global lexicon, onset
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick an onset at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(onset))
-    #pick an onset at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_consonants))
-    #select a random subset of nuclei as the conditioning environment
-    environment = random.sample(nucleus, random.randint(0, len(nucleus) - 1))
-    #apply the change to the lexicon
+    #determine an index for the onset (this represents place of articulation)
+    i = random.choice(range(len(rev_consonants)-1))
+    #Here we pick two adjacent phonemes. merg_2 is the outcome of the merger.
+    merg_1, merg_2 = random.sample(sorted(list(rev_consonants))[i:i+2], 2)
+    #determine the boundary of the conditioning environment (the nucleus)
+    threshold = random.choice(list(rev_vowels))
+    #if we are merging to a back consonant (higher index), the conditioning environment is back vowels
+    if merg_1 < merg_2:
+        environment = [phoneme for phoneme in nucleus if phoneme >= threshold]
+    #if we are merging to a front consonant (lower index), the conditioning environment is front vowels
+    else:
+        environment = [phoneme for phoneme in nucleus if phoneme <= threshold]
     for word in lexicon:
-        #check words where merg_1 is the onset
-        if word[0] == merg_1:
-            #determine whether the nucleus is in the conditioning environment
-            if word[1] in environment:
-                #if the nucleus is in the conditioning environment, then change merg_1 into merg_2
+        #check if the onset and the environment are relevant for the merger
+        if word[0] == merg_1 and word[1] in environment:
                 new_lexicon.append((merg_2, word[1], word[2]))
-            else:
-                #if not, the change does not apply
-                new_lexicon.append(word)
         else:
-            #if the word does not start with merg_1, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
     print('/' + rev_consonants[merg_1] + '/ becomes /' + rev_consonants[merg_2] + '/ in onset before ['
@@ -148,36 +144,33 @@ def change_onset():
     lexicon = new_lexicon
     onset = get_onset(lexicon)
 
-
 '''
 The following two functions will apply a change to the nucleus. The only difference between the two is whether
 the conditioning environment is the onset or the coda.
 '''
 
 def change_nucleus():
-    #call the lexicon list and the nucleus set
+    # call the lexicon list and the nucleus set
     global lexicon, nucleus
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a nucleus at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(nucleus))
-    #pick a nucleus at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_vowels))
-    #select a random subset of onsets as the conditioning environment
-    environment = random.sample(onset, random.randint(0, len(onset) - 1))
-    #apply the change to the lexicon
+    #determine an index for the nucleus (this represents place of articulation)
+    i = random.choice(range(len(rev_vowels)-1))
+    #Here we pick two adjacent phonemes. merg_2 is the outcome of the merger.
+    merg_1, merg_2 = random.sample(sorted(list(rev_vowels))[i:i+2], 2)
+    #determine the boundary of the conditioning environment (the onset)
+    threshold = random.choice(list(rev_consonants))
+    #if we are merging to a back vowel (high index), the conditioning environment is back consonants
+    if merg_1 < merg_2:
+        environment = [phoneme for phoneme in onset if phoneme >= threshold]
+    #if we are merging to a front vowel (lower index), the conditioning environment is front consonants
+    else:
+        environment = [phoneme for phoneme in onset if phoneme <= threshold]
     for word in lexicon:
-        #check words where merg_1 is the nucleus
-        if word[1] == merg_1:
-            #determine whether the onset is in the conditioning environment
-            if word[0] in environment:
-                #if the onset is in the conditioning environment, then change merg_1 into merg_2
+        #check if the nucleus and the environment are relevant for the merger
+        if word[0] in environment and word[1] == merg_1:
                 new_lexicon.append((word[0], merg_2, word[2]))
-            else:
-                #if not, the change does not apply
-                new_lexicon.append(word)
         else:
-            #if the word does not have merg_1, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
     print('/' + rev_vowels[merg_1] + '/ becomes /' + rev_vowels[merg_2] + '/ after ['
@@ -187,29 +180,27 @@ def change_nucleus():
     nucleus = get_nucleus(lexicon)
 
 def change_nucleus2():
-    #call the lexicon list and the nucleus set
+    # call the lexicon list and the nucleus set
     global lexicon, nucleus
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a nucleus at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(nucleus))
-    #pick a nucleus at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_vowels))
-    #select a random subset of codas as the conditioning environment
-    environment = random.sample(coda, random.randint(0, len(coda) - 1))
-    #apply the change to the lexicon
+    #determine an index for the nucleus (this represents place of articulation)
+    i = random.choice(range(len(rev_vowels)-1))
+    #Here we pick two adjacent phonemes. merg_2 is the outcome of the merger.
+    merg_1, merg_2 = random.sample(sorted(list(rev_vowels))[i:i+2], 2)
+    #determine the boundary of the conditioning environment (the onset)
+    threshold = random.choice(list(rev_consonants))
+    #if we are merging to a back vowel (high index), the conditioning environment is back consonants
+    if merg_1 < merg_2:
+        environment = [phoneme for phoneme in coda if phoneme >= threshold]
+    #if we are merging to a front vowel (lower index), the conditioning environment is front consonants
+    else:
+        environment = [phoneme for phoneme in coda if phoneme <= threshold]
     for word in lexicon:
-        #check words where merg_1 is the nucleus
-        if word[1] == merg_1:
-            #determine whether the coda is in the conditioning environment
-            if word[2] in environment:
-                #if the coda is in the conditioning environment, then change merg_1 into merg_2
+        #check if the nucleus and the environment are relevant for the merger
+        if word[2] in environment and word[1] == merg_1:
                 new_lexicon.append((word[0], merg_2, word[2]))
-            else:
-                #if not, the change does not apply
-                new_lexicon.append(word)
         else:
-            #if the word does not have merg_1, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
     print('/' + rev_vowels[merg_1] + '/ becomes /' + rev_vowels[merg_2] + '/ before ['
@@ -217,7 +208,6 @@ def change_nucleus2():
     #Update lexicon and nuclei
     lexicon = new_lexicon
     nucleus = get_nucleus(lexicon)
-
 
 '''
 Finally, this function changes the coda consonant.
@@ -229,89 +219,30 @@ def change_coda():
     global lexicon, coda
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a coda at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(coda))
-    #pick a coda at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_consonants))
-    #select a random subset of nuclei as the conditioning environment
-    environment = random.sample(nucleus, random.randint(0, len(nucleus) - 1))
-    #apply the change to the lexicon
+    #determine an index for the coda (this represents place of articulation)
+    i = random.choice(range(len(rev_consonants)-1))
+    #Here we pick two adjacent phonemes. merg_2 is the outcome of the merger.
+    merg_1, merg_2 = random.sample(sorted(list(rev_consonants))[i:i+2], 2)
+    #determine the boundary of the conditioning environment (the nucleus)
+    threshold = random.choice(list(rev_vowels))
+    #if we are merging to a back consonant (higher index), the conditioning environment is back vowels
+    if merg_1 < merg_2:
+        environment = [phoneme for phoneme in nucleus if phoneme >= threshold]
+    #if we are merging to a front consonant (lower index), the conditioning environment is front vowels
+    else:
+        environment = [phoneme for phoneme in nucleus if phoneme <= threshold]
     for word in lexicon:
-        #check words where merg_1 is the coda
-        if word[2] == merg_1:
-            #determine whether the nucleus is in the conditioning environment
-            if word[1] in environment:
-                #if the nucleus is in the conditioning environment, then change merg_1 into merg_2
+        #check if the coda and the environment are relevant for the merger
+        if word[2] == merg_1 and word[1] in environment:
                 new_lexicon.append((word[0], word[1], merg_2))
-            else:
-                #if not, the change does not apply
-                new_lexicon.append(word)
         else:
-            #if the word does not end with merg_1, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
     print('/' + rev_consonants[merg_1] + '/ becomes /' + rev_consonants[merg_2] + '/ in coda after ['
           + ' '.join([rev_vowels[index] for index in environment]) + ']')
-    #Update lexicon and onsets
+    #Update lexicon and codas
     lexicon = new_lexicon
     coda = get_coda(lexicon)
-
-'''
-Now, we add the two contraction functions:'''
-
-def contraction_onset():
-    #call the lexicon list and the onset and nucleus sets
-    global lexicon, onset, nucleus
-    new_lexicon = []
-    #we select a CV sequence as the target of the contraction
-    target_C, target_V = random.choice(list(onset)), random.choice(list(nucleus))
-    #this selects an outcome among those which are not available in the language
-    possible_outcome = [key for key in rev_consonants if key not in onset]
-    if possible_outcome:
-        outcome = random.choice(possible_outcome)
-    #if all the possible onsets are already represented, pick one at random
-    else:
-        outcome = random.choice(list(onset))
-    #this is the vowel added after the new onset
-    filler = random.choice(list(nucleus))
-    for word in lexicon:
-        if (word[0], word[1]) == (target_C, target_V):
-            new_lexicon.append((outcome, filler, word[2]))
-        else:
-            new_lexicon.append(word)
-    #this prints a line describing the change that happened
-    print('Contraction of /' + rev_consonants[target_C] + rev_vowels[target_V] + '/ in /' + rev_consonants[outcome] + rev_vowels[filler] + '/ in onsets')
-    #Update lexicon and onsets
-    lexicon = new_lexicon
-    onset, nucleus = get_onset(lexicon), get_nucleus(lexicon)
-
-
-def contraction_coda():
-    #call the lexicon list and the onset and nucleus sets
-    global lexicon, nucleus, coda
-    new_lexicon = []
-    #we select a VC sequence as the target of the contraction
-    target_V, target_C = random.choice(list(nucleus)), random.choice(list(coda))
-    #this selects an outcome among those which are not available in the language
-    possible_outcome = [key for key in rev_consonants if key not in coda]
-    if possible_outcome:
-        outcome = random.choice(possible_outcome)
-    #if all the possible onsets are already represented, pick one at random
-    else:
-        outcome = random.choice(list(coda))
-    #this is the vowel added before the new coda
-    filler = random.choice(list(nucleus))
-    for word in lexicon:
-        if (word[1], word[2]) == (target_V, target_C):
-            new_lexicon.append((word[0], filler, outcome))
-        else:
-            new_lexicon.append(word)
-    #this prints a line describing the change that happened
-    print('Contraction of /' + rev_vowels[target_V]+rev_consonants[target_C] + '/ in /' + rev_vowels[filler] + rev_consonants[outcome] + '/ in codas')
-    #Update lexicon and onsets
-    lexicon = new_lexicon
-    nucleus, coda = get_nucleus(lexicon), get_coda(lexicon)
-
 
 
 '''
@@ -335,7 +266,7 @@ def main(file, n_changes, iterations):
         onset, nucleus, coda = get_onset(lexicon), get_nucleus(lexicon), get_coda(lexicon)
         #this line will be used to define the sound change functions used in the simulation and their weight
         #with this setting, each function is equally weighted
-        functions = [change_onset, change_nucleus, change_nucleus2, change_coda, contraction_onset, contraction_coda]
+        functions = [change_onset, change_nucleus, change_nucleus2, change_coda]
         #we initialize lists that will keep track of the number of the iteration, the number of the phonemes,
         #and the average distance
         x_axis = [0]
@@ -345,7 +276,7 @@ def main(file, n_changes, iterations):
             #this line selects a sound change function at random and applies it
             random.choice(functions)()
             #This is needed to make the plot lighter. For the toy example in Figure 2.2, '500' has been reduced to '1'
-            if n % 1 == 0:
+            if n % 500 == 0:
                 #we update the lists that keep track of the number of the iteration, the number of the phonemes, and the
                 #average distance
                 x_axis.append(n+1)
