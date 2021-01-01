@@ -122,28 +122,28 @@ def change_onset():
     global lexicon, onset
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick an onset at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(onset))
-    #pick an onset at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_consonants))
+    #pick an onset at random and name it target. This is the target of the sound change
+    target = random.choice(list(onset))
+    #pick an onset at random and name it outcome. This is the outcome of the sound change
+    outcome = random.choice(list(rev_consonants))
     #select a random subset of nuclei as the conditioning environment
     environment = random.sample(nucleus, random.randint(0, len(nucleus) - 1))
     #apply the change to the lexicon
     for word in lexicon:
-        #check words where merg_1 is the onset
-        if word[0] == merg_1:
+        #check words where target is the onset
+        if word[0] == target:
             #determine whether the nucleus is in the conditioning environment
             if word[1] in environment:
-                #if the nucleus is in the conditioning environment, then change merg_1 into merg_2
-                new_lexicon.append((merg_2, word[1], word[2]))
+                #if the nucleus is in the conditioning environment, then change target into outcome
+                new_lexicon.append((outcome, word[1], word[2]))
             else:
                 #if not, the change does not apply
                 new_lexicon.append(word)
         else:
-            #if the word does not start with merg_1, the change does not apply
+            #if the word does not start with target, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
-    print('/' + rev_consonants[merg_1] + '/ becomes /' + rev_consonants[merg_2] + '/ in onset before ['
+    print('/' + rev_consonants[target] + '/ becomes /' + rev_consonants[outcome] + '/ in onset before ['
           + ' '.join([rev_vowels[index] for index in environment]) + ']')
     #Update lexicon and onsets
     lexicon = new_lexicon
@@ -160,28 +160,28 @@ def change_nucleus():
     global lexicon, nucleus
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a nucleus at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(nucleus))
-    #pick a nucleus at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_vowels))
+    #pick a nucleus at random and name it target. This is the target of the sound change
+    target = random.choice(list(nucleus))
+    #pick a nucleus at random and name it outcome. This is the outcome of the sound change
+    outcome = random.choice(list(rev_vowels))
     #select a random subset of onsets as the conditioning environment
     environment = random.sample(onset, random.randint(0, len(onset) - 1))
     #apply the change to the lexicon
     for word in lexicon:
-        #check words where merg_1 is the nucleus
-        if word[1] == merg_1:
+        #check words where target is the nucleus
+        if word[1] == target:
             #determine whether the onset is in the conditioning environment
             if word[0] in environment:
-                #if the onset is in the conditioning environment, then change merg_1 into merg_2
-                new_lexicon.append((word[0], merg_2, word[2]))
+                #if the onset is in the conditioning environment, then change target into outcome
+                new_lexicon.append((word[0], outcome, word[2]))
             else:
                 #if not, the change does not apply
                 new_lexicon.append(word)
         else:
-            #if the word does not have merg_1, the change does not apply
+            #if the word does not have target, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
-    print('/' + rev_vowels[merg_1] + '/ becomes /' + rev_vowels[merg_2] + '/ after ['
+    print('/' + rev_vowels[target] + '/ becomes /' + rev_vowels[outcome] + '/ after ['
           + ' '.join([rev_consonants[index] for index in environment]) + ']')
     #Update lexicon and nuclei
     lexicon = new_lexicon
@@ -192,28 +192,28 @@ def change_nucleus2():
     global lexicon, nucleus
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a nucleus at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(nucleus))
-    #pick a nucleus at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_vowels))
+    #pick a nucleus at random and name it target. This is the target of the sound change
+    target = random.choice(list(nucleus))
+    #pick a nucleus at random and name it outcome. This is the outcome of the sound change
+    outcome = random.choice(list(rev_vowels))
     #select a random subset of codas as the conditioning environment
     environment = random.sample(coda, random.randint(0, len(coda) - 1))
     #apply the change to the lexicon
     for word in lexicon:
-        #check words where merg_1 is the nucleus
-        if word[1] == merg_1:
+        #check words where target is the nucleus
+        if word[1] == target:
             #determine whether the coda is in the conditioning environment
             if word[2] in environment:
-                #if the coda is in the conditioning environment, then change merg_1 into merg_2
-                new_lexicon.append((word[0], merg_2, word[2]))
+                #if the coda is in the conditioning environment, then change target into outcome
+                new_lexicon.append((word[0], outcome, word[2]))
             else:
                 #if not, the change does not apply
                 new_lexicon.append(word)
         else:
-            #if the word does not have merg_1, the change does not apply
+            #if the word does not have target, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
-    print('/' + rev_vowels[merg_1] + '/ becomes /' + rev_vowels[merg_2] + '/ before ['
+    print('/' + rev_vowels[target] + '/ becomes /' + rev_vowels[outcome] + '/ before ['
           + ' '.join([rev_consonants[index] for index in environment]) + ']')
     #Update lexicon and nuclei
     lexicon = new_lexicon
@@ -230,28 +230,28 @@ def change_coda():
     global lexicon, coda
     #prepare a new empty list, that will be filled with the form of the words after the sound change apply
     new_lexicon = []
-    #pick a coda at random and name it merg_1. This is the target of the sound change
-    merg_1 = random.choice(list(coda))
-    #pick a coda at random and name it merg_2. This is the outcome of the sound change
-    merg_2 = random.choice(list(rev_consonants))
+    #pick a coda at random and name it target. This is the target of the sound change
+    target = random.choice(list(coda))
+    #pick a coda at random and name it outcome. This is the outcome of the sound change
+    outcome = random.choice(list(rev_consonants))
     #select a random subset of nuclei as the conditioning environment
     environment = random.sample(nucleus, random.randint(0, len(nucleus) - 1))
     #apply the change to the lexicon
     for word in lexicon:
-        #check words where merg_1 is the coda
-        if word[2] == merg_1:
+        #check words where target is the coda
+        if word[2] == target:
             #determine whether the nucleus is in the conditioning environment
             if word[1] in environment:
-                #if the nucleus is in the conditioning environment, then change merg_1 into merg_2
-                new_lexicon.append((word[0], word[1], merg_2))
+                #if the nucleus is in the conditioning environment, then change target into outcome
+                new_lexicon.append((word[0], word[1], outcome))
             else:
                 #if not, the change does not apply
                 new_lexicon.append(word)
         else:
-            #if the word does not end with merg_1, the change does not apply
+            #if the word does not end with target, the change does not apply
             new_lexicon.append(word)
     #this prints a line describing the change that happened
-    print('/' + rev_consonants[merg_1] + '/ becomes /' + rev_consonants[merg_2] + '/ in coda after ['
+    print('/' + rev_consonants[target] + '/ becomes /' + rev_consonants[outcome] + '/ in coda after ['
           + ' '.join([rev_vowels[index] for index in environment]) + ']')
     #Update lexicon and coda
     lexicon = new_lexicon
@@ -390,8 +390,8 @@ def main(file, n_changes, iterations):
                 #sound changes applied
                 for index, word in enumerate(lexicon):
                     print(''.join(initial_lexicon[index]) + '->' + ''.join(rev_consonants[word[0]] + rev_vowels[word[1]] + rev_consonants[word[2]]))
-            print('#######Language Change is finished!')
-            print('###################################!')
+        print('#######Language Change is finished!')
+        print('###################################!')
         #After the simulation has ended, we plot the change in the number of phonemes and in the average distance
         #during the simulation
         #plot phoneme size
