@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+This script has been used perform functional load calculations on the English (US) CHILDES data.
+
+author: Andrea Ceolin
+date: February 2021
+'''
+
 from collections import Counter
 import math
 
@@ -35,6 +42,10 @@ in the functional load function from intervocalic consonants).
 '''
 
 def entropy(unigrams):
+    '''
+    :param unigrams: unigram frequency
+    :return: entropy
+    '''
     total = sum(unigrams.values())
     sommation = 0
     for value in unigrams.values():
@@ -42,6 +53,12 @@ def entropy(unigrams):
     return -sommation
 
 def functional_load(words_dic, phon1, phon2):
+    '''
+    :param words_dic: a dictionary containing words and their corpus frequency
+    :param phon1: phoneme replaced
+    :param phon2: phoneme used as replacement
+    :return: the different in entropy between the two states
+    '''
     #Here we keep track of the unigram distribution of intervocalic consonants pre- and post- merger
     merged_words = Counter()
     intervocalic = Counter()

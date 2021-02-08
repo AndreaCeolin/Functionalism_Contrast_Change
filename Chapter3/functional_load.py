@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+'''
+This script contains the basic functions needed to perform functional load calculations.
+In this case, we apply the functions to the classic Surendran and Niyogi's toy example.
+
+author: Andrea Ceolin
+date: February 2021
+'''
+
+
 from collections import Counter
 import math
 
@@ -26,6 +38,10 @@ def ngrams(text, k=1):
             counts[text[index:index+k+1]] +=1
     return counts
 
+'''
+This function calculates entropy given an ngram distribution
+'''
+
 def entropy(text, k=1):
     '''
     :param text: the input text
@@ -39,6 +55,10 @@ def entropy(text, k=1):
         sommation += value/total * math.log(value/total, 2)
     sommation = sommation / (k+1)
     return -sommation
+
+'''
+This function combines the previous functions to calculate entropy loss given a merger
+'''
 
 def functional_load(text, phon1, phon2):
     '''

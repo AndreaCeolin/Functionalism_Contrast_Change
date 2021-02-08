@@ -60,86 +60,70 @@ words_types = {key:1 for key in words_tokens}
 
 
 '''
-These are the three main functions to extract ngrams and calculate entropy loss
+In order to deal with unigrams, we can calculate entropy directly given the unigram frequencies (that we extract
+in the functional load function from vowels occurring before intervocalic 'R'). 
 '''
 
-def ngrams(words_dic, k):
+def entropy(unigrams):
     '''
-    :param words_dic: a dictionary containing words and their corpus frequency
-    :param k: the order of the Markov model
-    :return: ngram counts
-    '''
-    counts = Counter()
-    if k == 0: #return unigrams if k=0
-        for word in words_dic:
-            for index, letter in enumerate(word):
-                counts[word[index]] += words_dic[word]
-    else: #return k+1grams if k>1
-        for word in words_dic:
-            padded_word = tuple(["|"] + list(word) + ["|"])
-            for index, letter in enumerate(padded_word[:-k]):
-                counts[padded_word[index:index+k+1]] += words_dic[word]
-    return counts
-
-
-def entropy(words_dic, k=2):
-    '''
-    :param words_dic: a dictionary containing words and their corpus frequency
-    :param k: the order of the Markov model
+    :param unigrams: unigram frequency
     :return: entropy
     '''
-    ngrams_dic = ngrams(words_dic, k)
-    total = sum(ngrams_dic.values())
+    total = sum(unigrams.values())
     sommation = 0
-    for value in ngrams_dic.values():
+    for value in unigrams.values():
         sommation += value/total * math.log(value/total, 2)
-    sommation = sommation / (k+1)
     return -sommation
 
 
-def functional_load(words_dic, phon1, phon2):
+def functional_load(words, phon1, phon2):
     '''
     :param words_dic: a dictionary containing words and their corpus frequency
     :param phon1: phoneme replaced
     :param phon2: phoneme used as replacement
     :return: the different in entropy between the two states
     '''
+    intervocalic = Counter()
     merged_words = Counter()
-    for word in words_dic:
-        new_word = []
-        for letter in word:
-            if letter == phon1:
-                new_word.append(phon2)
-            else:
-                new_word.append(letter)
-        merged_words[tuple(new_word)] += words_dic[word]
-    print(round((entropy(words_dic)-entropy(merged_words))/entropy(words_dic),4))
-
-'''
-This prints the frequency of the phonemes at the type level
-'''
-
-letters = Counter()
-for key in words_types:
-    letters[key[0]] +=1
-
-print(letters.items())
+    for word, count in words.items():
+        for index, letter in enumerate(word[:-1]):
+            #with this line, we retrieve only vowels occurring before intervocalic 'R'
+            if letter[0] in {'A', 'O', 'U', 'E', 'I'} and letter[-1] == 'R' and word[index+1][0] in {'A', 'O', 'U', 'E', 'I'}:
+                if letter == phon1:
+                    intervocalic[(letter,)] += count
+                    merged_words[(phon2,)] += count
+                else:
+                    intervocalic[(letter,)] += count
+                    merged_words[(letter,)] += count
+    print(round((entropy(intervocalic)-entropy(merged_words))/entropy(intervocalic),4))
 
 
 '''
-This prints the functional load for the pairs mentioned in the work
+These numbers are different than those that appear in the dissertation document, because a bug was found after
+the publication. The results and the conclusions do not change significantly, though.
 '''
 
 
-functional_load(words_tokens, 'AA', 'AO')
-functional_load(words_tokens, 'UH', 'AO')
-functional_load(words_tokens, 'AH', 'AO')
+functional_load(words_tokens, 'AHR', 'ER')
+functional_load(words_tokens, 'EHR', 'AER')
+functional_load(words_tokens, 'EHR', 'EYR')
+functional_load(words_tokens, 'EHR', 'AHR')
+functional_load(words_tokens, 'IHR', 'IYR')
+functional_load(words_tokens, 'EHR', 'ER')
+functional_load(words_tokens, 'AER', 'ER')
+functional_load(words_tokens, 'EYR', 'ER')
+functional_load(words_tokens, 'IHR', 'ER')
+functional_load(words_tokens, 'EHR', 'IHR')
+functional_load(words_tokens, 'EYR', 'IHR')
+functional_load(words_tokens, 'AER', 'AHR')
 
 
-functional_load(words_tokens, 'OY', 'ER')
-functional_load(words_tokens, 'AY', 'ER')
-functional_load(words_tokens, 'EY', 'ER')
-functional_load(words_tokens, 'AW', 'ER')
-functional_load(words_tokens, 'OW', 'ER')
-functional_load(words_tokens, 'IY', 'ER')
-functional_load(words_tokens, 'UW', 'AO')
+functional_load(words_tokens, 'AER', 'AAR')
+functional_load(words_tokens, 'AOR', 'AAR')
+functional_load(words_tokens, 'AOR', 'UHR')
+functional_load(words_tokens, 'AHR', 'AAR')
+functional_load(words_tokens, 'AHR', 'AOR')
+functional_load(words_tokens, 'EYR', 'IHR')
+functional_load(words_tokens, 'ER', 'AAR')
+functional_load(words_tokens, 'ER', 'AOR')
+

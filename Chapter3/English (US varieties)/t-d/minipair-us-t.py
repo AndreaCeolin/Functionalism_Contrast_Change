@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+This script is used to retrieve the number of minimal pairs associated to each phoneme for the English (US) CHILDES data.
+
+author: Andrea Ceolin
+date: February 2021
+'''
+
 from collections import Counter, defaultdict
 
-
 '''
-This script is used to retrieve the number of minimal pairs associated to each phoneme
 Since we need to isolate minimal pairs where the contrast is intervocalic, we need to keep track of vowels
 '''
 
@@ -17,7 +22,7 @@ def minimal_pairs(wordlist,phoneme):
     :param phoneme: this is the phoneme of which we want to retrieve the minimal pairs
     :return: None
     '''
-    #this classifies words by length classes (length:list of words) and facilitates the minimal pair algorithm
+    #this classifies words by length classes (length:list of words) and speeds up the minimal pair algorithm
     word_dic = defaultdict(list)
     for word in wordlist:
         word_dic[len(word)].append(word)
@@ -50,8 +55,6 @@ def minimal_pairs(wordlist,phoneme):
     return
 
 
-
-
 wordlist =[]
 for line in open('american_corpus.txt'):
     #In this case, we retrieve all the first pronunciations in CMU, excluding all those that have a (2) or (3) or (4) tag,
@@ -70,6 +73,16 @@ print(len(wordlist))
 Print the minimal pairs along with their count
 '''
 minimal_pairs(wordlist, 'T')
+
+
+'''
+Print phoneme frequencies
+'''
+
+phonemes = [element for line in wordlist for element in line]
+
+for phoneme in Counter(phonemes).most_common():
+    print(phoneme)
 
 
 

@@ -10,7 +10,6 @@ date: February 2021
 
 from collections import Counter, defaultdict
 
-
 def minimal_pairs(wordlist, phoneme):
     '''
     :param wordlist: this is the file containing the corpus
@@ -43,15 +42,30 @@ def minimal_pairs(wordlist, phoneme):
     for pair in dict:
         if phoneme in pair:
             print(pair, len(dict[pair]), dict[pair])
-
+    return
 
 '''
-Since the CMU dictionary encodes the phoneme we are interested in as two separate symbols 'HH' and 'W', we need
-a function to merge them
+Since the CMU dictionary does not take into account the allophonic variation in rhotic environments,
+we need to treat vowels occurring in rhotic environments as independent symbols, in order to study mergers
+like the cot/caught merger. We will do it by means of a special function.
 '''
 
-def merge_w(word):
-    return word.replace('HH W ', 'HHW ')
+def merge_rhotic(word):
+    word = word.replace('AA R', 'AAR')
+    word = word.replace('AO R', 'AOR')
+    word = word.replace('AE R', 'AER')
+    word = word.replace('AH R', 'AHR')
+    word = word.replace('AW R', 'AWR')
+    word = word.replace('AY R', 'AYR')
+    word = word.replace('EH R', 'EHR')
+    word = word.replace('EY R', 'EYR')
+    word = word.replace('IH R', 'IHR')
+    word = word.replace('IY R', 'IYR')
+    word = word.replace('OW R', 'OWR')
+    word = word.replace('OY R', 'OYR')
+    word = word.replace('UH R', 'UHR')
+    word = word.replace('UW R', 'UWR')
+    return word
 
 
 '''
@@ -62,16 +76,28 @@ For this reason, we need to go through all the alternative pronunciations, and s
 wordlist =[]
 
 for line in open('american_corpus.txt'):
-    #If there is an alternative pronunciation (the variety ends with the symbol ')'), the alternative pronunciaton
-    #replaces the original one. This applies recursively: if there are 3 or 4 different pronunciations, only the last
-    #one is retrieved, since that is the one that contains the 'HH W' symbols.
-    if line.split()[0][-1] == ')':
-        wordlist.pop()
-        #we apply the function to retrieve the HHW symbol, and we exclude the first (the word)
-        #and last (the frequency count) element of the line
-        wordlist.append(merge_w(line).split()[1:-1])
-    else:
-        wordlist.append(merge_w(line).split()[1:-1])
+    #We only retrieve the first pronunciation, and exclude all secondary pronunciations. Rhothic environments are coded
+    #as independent symbols
+    if line.split()[0][-1] != ')':
+        wordlist.append(merge_rhotic(line).split()[1:-1])
+
+'''
+We code intervocalic 'R' with the special symbol 'r'
+'''
+
+merged_words = []
+for word in wordlist:
+    new_word = []
+    for index,letter in enumerate(word[:-1]):
+        #If the 'R' is followed by a vowel, we code it with the symbol 'r'. This will allow us to isolate
+        #all vowel + R sequences where R is intervocalic
+        if letter[-1] == 'R' and word[index+1][0] in {'A', 'O', 'U', 'E', 'I'}:
+            new_word.append(letter[:-1] + 'r')
+        else:
+            new_word.append(letter)
+    new_word.append(word[-1])
+    merged_words.append(new_word)
+wordlist = merged_words
 
 
 '''
@@ -79,12 +105,12 @@ Double check that the size of the list is the expected one
 '''
 print(len(wordlist))
 
-
 '''
-Print the minimal pairs along with their count
+Print the minimal pairs along with their count. Note that by targeting the sequence vowel + 'r' we are targeting
+vowels which are followed by intervocalic 'R'
 '''
-minimal_pairs(wordlist, 'HHW')
 
+minimal_pairs(wordlist, 'EHr')
 
 '''
 Print phoneme frequencies
@@ -94,4 +120,5 @@ phonemes = [element for line in wordlist for element in line]
 
 for phoneme in Counter(phonemes).most_common():
     print(phoneme)
+
 

@@ -49,6 +49,11 @@ These are the two main functions to extract ngrams and calculate entropy
 '''
 
 def ngrams(words_dic, k):
+    '''
+    :param words_dic: a dictionary containing words and their corpus frequency
+    :param k: the order of the Markov model
+    :return: ngram counts
+    '''
     counts = Counter()
     if k == 0:
         for word in words_dic:
@@ -63,6 +68,11 @@ def ngrams(words_dic, k):
 
 
 def entropy(words_dic, k=2):
+    '''
+    :param text: the input text
+    :param k: the order of the Markov model
+    :return: entropy
+    '''
     ngrams_dic = ngrams(words_dic, k)
     total = sum(ngrams_dic.values())
     sommation = 0
@@ -73,6 +83,12 @@ def entropy(words_dic, k=2):
 
 
 def functional_load(words_dic, phon1, phon2):
+    '''
+    :param words_dic: a dictionary containing words and their corpus frequency
+    :param phon1: phoneme replaced
+    :param phon2: phoneme used as replacement
+    :return: the different in entropy between the two states
+    '''
     merged_words = Counter()
     for word in words_dic:
         new_word = []

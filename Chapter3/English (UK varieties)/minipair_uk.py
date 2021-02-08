@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+This script is used to retrieve the number of minimal pairs associated to each phoneme for the English (UK) CHILDES data.
+
+author: Andrea Ceolin
+date: February 2021
+'''
+
 from collections import Counter, defaultdict
-
-
-'''
-This script is used to retrieve the number of minimal pairs associated to each phoneme
-'''
-
 
 def minimal_pairs(wordlist, phoneme):
     '''
@@ -15,7 +16,7 @@ def minimal_pairs(wordlist, phoneme):
     :param phoneme: this is the phoneme of which we want to retrieve the minimal pairs
     :return: None
     '''
-    #this classifies words by length classes (length:list of words) and facilitates the minimal pair algorithm
+    #this classifies words by length classes (length:list of words) and speeds up the minimal pair algorithm
     word_dic = defaultdict(list)
     for word in wordlist:
         word_dic[len(word)].append(word)
@@ -42,24 +43,24 @@ def minimal_pairs(wordlist, phoneme):
         if phoneme in pair:
             print(pair, len(dict[pair]), dict[pair])
 
-
 wordlist = []
 
 for word in open('english_corpus.txt'):
     wordlist.append(word.split()[0])
-
 
 '''
 Double check that the size of the list is the expected one
 '''
 print(len(wordlist))
 
+'''
+Print the minimal pairs along with their count
+'''
 
 minimal_pairs(wordlist, 'f')
 #minimal_pairs(wordlist, 'T')
 #minimal_pairs(wordlist, '8')
 #minimal_pairs(wordlist, '2')
-
 
 '''
 Print phoneme frequencies

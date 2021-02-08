@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+'''
+This script is used to retrieve the number of minimal pairs associated to each phoneme for the English (US) CHILDES data.
+
+author: Andrea Ceolin
+date: February 2021
+'''
+
 from collections import Counter, defaultdict
-
-
-'''
-This script is used to retrieve the number of minimal pairs associated to each phoneme
-'''
 
 def minimal_pairs(wordlist, phoneme):
     '''
@@ -14,7 +16,7 @@ def minimal_pairs(wordlist, phoneme):
     :param phoneme: this is the phoneme of which we want to retrieve the minimal pairs
     :return: None
     '''
-    #this classifies words by length classes (length:list of words) and facilitates the minimal pair algorithm
+    #this classifies words by length classes (length:list of words) and speeds up the minimal pair algorithm
     word_dic = defaultdict(list)
     for word in wordlist:
         word_dic[len(word)].append(word)
@@ -64,7 +66,6 @@ def merge_rhotic(word):
     word = word.replace('UW R', 'UWR')
     return word
 
-
 '''
 In the CMU dictionary, pronunciations with the form 'HH W' are listed as the last entry among all possible ones.
 For this reason, we need to go through all the alternative pronunciations, and stores only the last one
@@ -78,19 +79,17 @@ for line in open('american_corpus.txt'):
     if line.split()[0][-1] != ')':
         wordlist.append(merge_rhotic(line).split()[1:-1])
 
-
-
 '''
 Double check that the size of the list is the expected one
 '''
-print(len(wordlist))
 
+print(len(wordlist))
 
 '''
 Print the minimal pairs along with their count
 '''
-minimal_pairs(wordlist, 'OY')
 
+minimal_pairs(wordlist, 'OY')
 
 '''
 Print phoneme frequencies
