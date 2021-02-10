@@ -99,8 +99,8 @@ def functional_load(words, phon1, phon2):
 
 
 '''
-These numbers are different than those that appear in the dissertation document, because a bug was found after
-the publication. The results and the conclusions do not change significantly, though.
+These numbers are slightly different than those that appear in the dissertation document, because a small bug 
+was found after the publication. The results and the conclusions do not change significantly, though.
 '''
 
 
