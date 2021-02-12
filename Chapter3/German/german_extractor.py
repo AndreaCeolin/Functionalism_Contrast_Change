@@ -58,7 +58,7 @@ def get_list():
 
 
 '''
-Get a dictionary of lemmas that appear at least twice in CELEX.
+Get a dictionary of lemmas that appear in CELEX.
 The dictionary has the lemma as a key, and its phonological form as its value
 '''
 
