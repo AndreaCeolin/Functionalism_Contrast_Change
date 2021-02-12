@@ -101,17 +101,6 @@ def functional_load(words_dic, phon1, phon2):
     print(round((entropy(words_dic)-entropy(merged_words))/entropy(words_dic),4))
 
 '''
-This prints the frequency of the phonemes at the type level
-'''
-
-letters = Counter()
-for key in words_types:
-    letters[key[0]] +=1
-
-print(letters.items())
-
-
-'''
 This prints the functional load for the pairs mentioned in the work
 '''
 

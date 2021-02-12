@@ -16,7 +16,7 @@ Get the token frequencies of the corpus
 '''
 
 words_tokens = Counter()
-for line in open('english_corpus.txt', 'r'):
+for line in open('german_corpus.txt', 'r'):
     word, counts = line.split()
     words_tokens[word] += int(counts)
 
@@ -79,47 +79,13 @@ def functional_load(words_dic, phon1, phon2):
         merged_words[word.replace(phon1, phon2)] += words_dic[word]
     print(round((entropy(words_dic)-entropy(merged_words))/entropy(words_dic), 4))
 
+
 '''
 This prints the functional load for the pairs mentioned in the work
 '''
 
 
-functional_load(words_tokens, 'T', 'f')
-functional_load(words_tokens, 'D', 'v')
-functional_load(words_tokens, 'T', 't')
-functional_load(words_tokens, 'T', 's')
-functional_load(words_tokens, 'T', 'D')
-functional_load(words_tokens, 'D', 'z')
-functional_load(words_tokens, 'D', 'd')
-
-'''
-functional_load(words_tokens, 'p', 'b')
-functional_load(words_tokens, 'f', 'v')
-functional_load(words_tokens, 't', 'd')
-functional_load(words_tokens, 's', 'z')
-functional_load(words_tokens, 'S', 'Z')
-functional_load(words_tokens, 'J', '_')
-functional_load(words_tokens, 'k', 'g')
-
-functional_load(words_tokens, 'p', 'f')
-
-functional_load(words_tokens, '2', '4')
-functional_load(words_tokens, '2', '1')
-functional_load(words_tokens, '2', '6')
-functional_load(words_tokens, '2', 'i')
-
-functional_load(words_tokens, '9', '$')
-functional_load(words_tokens, '9', '4')
-functional_load(words_tokens, '9', 'u')
-functional_load(words_tokens, '9', '5')
-
-functional_load(words_tokens, '7', '8')
-functional_load(words_tokens, '3', '8')
-functional_load(words_tokens, '7', 'i')
-functional_load(words_tokens, '7', '3')
-functional_load(words_tokens, '7', '9')
-functional_load(words_tokens, '3', 'i')
-functional_load(words_tokens, '3', '#')
-functional_load(words_tokens, '3', '$')
-functional_load(words_tokens, '3', 'u')
-'''
+functional_load(words_tokens, ')', 'e')
+functional_load(words_tokens, ')', '/')
+functional_load(words_tokens, ')', '#')
+functional_load(words_tokens, ')', '|')
