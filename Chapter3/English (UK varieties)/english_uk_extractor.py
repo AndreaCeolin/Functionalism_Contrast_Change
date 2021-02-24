@@ -75,7 +75,7 @@ for word, count in Counter(get_list()).most_common():
 
 
 '''
-Save the words in their phonological form, along with their CHILDED frequencies.
+Save the words in their phonological form, along with their CHILDES frequencies.
 '''
 
 lemmas = open('english_corpus.txt', 'w')
