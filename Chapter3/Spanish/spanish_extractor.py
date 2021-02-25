@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-This is the script used to extract words in CHILDES.
+This is the script used to extract words from CHILDES.
 The script requires that the entire CHILDES Spanish corpus is placed in the same folder of the script.
 It also requires having the pronunciation dictionary "es.csv" in the same folder.
 At the present day, it can be downloaded from here: https://github.com/Kyubyong/pron_dictionaries.

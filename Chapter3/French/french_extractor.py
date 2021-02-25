@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-This is the script used to extract words in CHILDES and Lexique.
+This is the script used to extract words from CHILDES and Lexique.
 The script requires that the entire CHILDES French corpus is placed in the same folder of the script.
 It also requires having the Lexique corpus in the same folder.
 At the present day, it can be downloaded from here: http://www.lexique.org

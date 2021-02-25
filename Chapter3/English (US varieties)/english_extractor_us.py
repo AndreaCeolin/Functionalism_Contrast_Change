@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-This is the script used to extract words in CHILDES and CELEX.
+This is the script used to extract words from CHILDES and CELEX.
 The script requires that the entire CHILDES English-NA corpus is placed in the same folder of the script.
 It also requires having the CELEX file 'epl.cd' in the same folder.
 If you don't have access to CELEX, you can use the interface at http://celex.mpi.nl to get the English lemma lexicon.
