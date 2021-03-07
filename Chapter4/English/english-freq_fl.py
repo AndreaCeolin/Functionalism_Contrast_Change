@@ -16,9 +16,6 @@ import math
 Helper functions
 '''
 
-def merge_w(word):
-    return word.replace('HH W ', 'HHW ')
-
 def merge_k(word):
     return word.replace('K Y', 'KY')
 
@@ -34,13 +31,10 @@ Extract English words and counts
 words = []
 i=0
 for line in open('american_corpus.txt', 'r'):
-    if line.split()[0][-1] == ')':
-        words.pop()
-        words.append(((tuple(merge_w(line).split()[1:-1]), int(line.split()[-1]))))
-        #words.append(((tuple(merge_w(merge_k(line)).split()[1:-1]), int(line.split()[-1]))))
-    else:
-        words.append(((tuple(merge_w(line).split()[1:-1]), int(line.split()[-1]))))
-        #words.append(((tuple(merge_w(merge_k(line)).split()[1:-1]), int(line.split()[-1]))))
+    #We only retrieve the first pronunciation, and exclude all secondary pronunciations
+    if line.split()[0][-1] != ')':
+        words.append(((tuple(line.split()[1:-1]), int(line.split()[-1]))))
+        #words.append(((tuple(merge_k(line).split()[1:-1]), int(line.split()[-1]))))
         i+=1
     if i>=5000:
         break
@@ -150,17 +144,17 @@ def fl(phon1, phonlist):
     fl_type = []
     for phon2 in phonlist:
         fl_type.append(functional_load(words_types_initial, phon1, phon2))
-    return str(round(sum(fl_tokens) / len(fl_tokens),4)) + ' ' +  str(round(sum(fl_type)/len(fl_type), 4))
+    return str(round(sum(fl_tokens) / len(fl_tokens),4)) + '\t' +  str(round(sum(fl_type)/len(fl_type), 4))
 
 
-print('%s %s %s' % (round(freq_tokens_init['K'],4), round(freq_types_init['K'],4), fl('K', ['T', 'S', 'CH', 'G', 'TH', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['T'],4), round(freq_types_init['T'],4), fl('T', ['K', 'S', 'CH', 'G', 'TH', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['S'],4), round(freq_types_init['S'],4), fl('S', ['T', 'K', 'CH', 'G', 'TH', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['CH'],4), round(freq_types_init['CH'],4), fl('CH', ['T', 'S', 'K', 'G', 'TH', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['G'],4), round(freq_types_init['G'],4), fl('G', ['T', 'S', 'CH', 'K', 'TH', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['TH'],4), round(freq_types_init['TH'],4), fl('TH', ['T', 'S', 'CH', 'G', 'K', 'D', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['D'],4), round(freq_types_init['D'],4), fl('D', ['T', 'S', 'CH', 'G', 'TH', 'K', 'SH'])))
-print('%s %s %s' % (round(freq_tokens_init['SH'],4), round(freq_types_init['SH'],4), fl('SH', ['T', 'S', 'CH', 'G', 'TH', 'D', 'K'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['K'],4), round(freq_types_init['K'],4), fl('K', ['T', 'S', 'CH', 'G', 'TH', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['T'],4), round(freq_types_init['T'],4), fl('T', ['K', 'S', 'CH', 'G', 'TH', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['S'],4), round(freq_types_init['S'],4), fl('S', ['T', 'K', 'CH', 'G', 'TH', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['CH'],4), round(freq_types_init['CH'],4), fl('CH', ['T', 'S', 'K', 'G', 'TH', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['G'],4), round(freq_types_init['G'],4), fl('G', ['T', 'S', 'CH', 'K', 'TH', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['TH'],4), round(freq_types_init['TH'],4), fl('TH', ['T', 'S', 'CH', 'G', 'K', 'D', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['D'],4), round(freq_types_init['D'],4), fl('D', ['T', 'S', 'CH', 'G', 'TH', 'K', 'SH'])))
+print('%s\t%s\t%s' % (round(freq_tokens_init['SH'],4), round(freq_types_init['SH'],4), fl('SH', ['T', 'S', 'CH', 'G', 'TH', 'D', 'K'])))
 
 
 '''
