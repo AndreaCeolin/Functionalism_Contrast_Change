@@ -10,6 +10,8 @@ This folder contains the material developed for the analyses in Chapter 4. The m
 
 4. **Japanese**: this folder contains the material developed for the estimation of frequency and functional load of Japanese word-initial CV sequences, using the Paidologos [Japanese](https://phonbank.talkbank.org/access/Japanese/PaidoJapanese.html) Corpus.
 
-5. **Regression**: this folder contains the material developed for the statistical analyses in 4.3 and 4.4.
+5. **Regression**: this folder contains the material developed for the regression analyses in 4.3.
 
-6. **Acquisition**: this folder contains the material developed for the simulation of the acquisition of the contrast between the labiodental and the interdental fricatives in English and Greek (4.5). 
+6. **Phonological_development**: this folder contains the material developed for the analysis of phonological development in 4.4.
+
+7. **Acquisition_model**: this folder contains the material developed for the simulation of the acquisition of the contrast between the labiodental and the interdental fricatives in English and Greek (4.5). 
