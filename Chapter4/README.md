@@ -1,6 +1,6 @@
 # Functionalism_Contrast_Change - Chapter 4
   
-This folder contains the material developed for the analyses in Chapter 4. The material is divided in the following folder:
+This folder contains the material developed for the analyses in Chapter 4. The material is divided in the following folders:
 
 1. **Cantonese**: this folder contains the material developed for the estimation of frequency and functional load of Cantonese word-initial CV sequences, using the Paidologos [Cantonese](https://phonbank.talkbank.org/access/Chinese/Cantonese/PaidoCantonese.html) Corpus .
 
