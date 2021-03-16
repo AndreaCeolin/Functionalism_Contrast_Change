@@ -10,7 +10,7 @@ This folder contains the material developed for the analyses in Chapter 4. The m
 
 4. **Japanese**: this folder contains the material developed for the estimation of frequency and functional load of Japanese word-initial CV sequences, using the Paidologos [Japanese](https://phonbank.talkbank.org/access/Japanese/PaidoJapanese.html) Corpus.
 
-5. **Regression**: this folder contains the material developed for the regression analyses in 4.3.
+5. **Regression_analysis**: this folder contains the material developed for the regression analyses in 4.3.
 
 6. **Phonological_development**: this folder contains the material developed for the analysis of phonological development in 4.4.
 
