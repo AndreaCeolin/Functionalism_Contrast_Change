@@ -1,5 +1,5 @@
 # Functionalism_Contrast_Change
-This repository contains the software and the material developed for my PhD dissertation. I expect to upload the remaining material and publish the repository by February 2021. In the meanwhile, if you need access to the code I employed for my dissertation, feel free to e-mail me.
+This repository contains the software and the material developed for my PhD dissertation. I expect to upload the remaining material and publish the repository by March 2021. 
 
 The files are divided in the following folders:
 
