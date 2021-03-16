@@ -1,9 +1,15 @@
 # Functionalism_Contrast_Change - Chapter 4
   
-The main files presented in this folder are:
+This folder contains the material developed for the analyses in Chapter 4. The material is divided in the following folder:
 
-1. **functional_load.py**: this script contains the main functions used to calculate ngram distributions and entropy loss by applying [Surendran and Niyogi (2006)](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.478.757&rep=rep1&type=pdf)'s formula. The functions are applied to the toy example presented in the paper, and the numbers match.
+1. **Cantonese**: this folder contains the material developed for the estimation of frequency and functional load of Cantonese word-initial CV sequences, using the [Paidologos Cantonese Corpus](https://phonbank.talkbank.org/access/Chinese/Cantonese/PaidoCantonese.html).
 
-The other folders contain variations of the script that have been used in the case studies in Chapter 3. 
+2. **English**: this folder contains the material developed for the estimation of frequency and functional load of English word-initial CV sequences, using the [Paidologos Cantonese Corpus](https://phonbank.talkbank.org/access/Eng-NA/PaidoEnglish.html).
 
+3. **Greek**: this folder contains the material developed for the estimation of frequency and functional load of Greek word-initial CV sequences, using the [Paidologos Greek Corpus](https://phonbank.talkbank.org/access/Other/Greek/PaidoGreek).
 
+4. **Japanese**: this folder contains the material developed for the estimation of frequency and functional load of Japanese word-initial CV sequences, using the [Paidologos Japanese Corpus](https://phonbank.talkbank.org/access/Japanese/PaidoJapanese.html).
+
+5. **Regression**: this folder contains the material developed for the statistical analyses in 4.3 and 4.4.
+
+6. **Acquisition**: this folder contains the material developed for the simulation of the acquisition of the contrast between the labiodental and the interdental fricatives in English and Greek (4.5). 
