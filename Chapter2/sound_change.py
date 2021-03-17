@@ -44,7 +44,7 @@ print(vectorize(dog))
 
 '''
 The lexicon is a list of words (tuples), and is stored as a global variable, since we need to modify it as sound change
-occurs. A wordlist containing the words "dog", "cat", and "pig" will be a represented by the following variable:
+occurs. A wordlist containing the words "dog", "cat", and "pig" will be represented by the following variable:
 '''
 
 wordlist = [('d', 'o', 'g'), ('c', 'a', 't'), ('p', 'i', 'g')]
