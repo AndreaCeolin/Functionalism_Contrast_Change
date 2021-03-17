@@ -6,7 +6,7 @@ The folder contains the following files:
 
 2. **japanese_extractor.py**: this is the Python3 script used to obtain a unique Japanese corpus with word frequency from Japanese [CHILDES](https://childes.talkbank.org/access/Japanese/) corpora.
 
-3. **japanese_corpus.txt**: this is the same file used for the functional load calculations on Japanese in Chapter 3.
+3. **japanese_corpus.txt**: this is the output of the ```japanese_extractor.py``` script.
 
 4. **japanese-freq_fl.py**: a Python3 script to extract functional load and frequency measures from the Japanese corpus.
 
