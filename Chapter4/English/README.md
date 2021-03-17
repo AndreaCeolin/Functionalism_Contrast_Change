@@ -8,4 +8,4 @@ The folder contains the following files:
 
 3. **english-freq_fl.py**: a Python3 script to extract functional load and frequency measures from the English corpus.
 
-4. **English_summary.xlsx**: an Excel spreadsheet containing the production accuracy, functional load and frequency measures for English.
+4. **English_summary.xlsx**: an Excel spreadsheet containing the production accuracy, functional load, and frequency measures for English.
