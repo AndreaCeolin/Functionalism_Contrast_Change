@@ -7,7 +7,7 @@ The files are divided in the following folders:
 
 2. **Chapter3**: this folders contains the material on which I base my functional load calculations in Chapter 3.
 
-3. **Chapter3.txt**: this folders contains the material on which I base my lexical contrast analysis in Chapter 4.
+3. **Chapter4**: this folders contains the material on which I base my lexical contrast analysis in Chapter 4.
 
 4. **Appendix**: this folder contains the material used for the analyses presented in the Appendix.
 

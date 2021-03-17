@@ -1,4 +1,4 @@
-# Functionalism_Contrast_Change - Chapter 3
+# Chapter 3
   
 The main files presented in this folder are:
 
