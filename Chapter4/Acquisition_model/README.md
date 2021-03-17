@@ -1,4 +1,4 @@
-# Chapter4 - Acquisition_model
+# Chapter4 - Acquisition model
 
 This folder contains the following files:
 
