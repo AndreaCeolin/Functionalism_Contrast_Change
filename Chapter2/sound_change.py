@@ -119,7 +119,7 @@ The first function represents a sound change that targets the onset of the word.
 def change_onset():
     #call the lexicon list and the onset set
     global lexicon, onset
-    #prepare a new empty list, that will be filled with the form of the words after the sound change apply
+    #prepare a new empty list, that will be filled with the form of the words after the sound change applies
     new_lexicon = []
     #pick an onset at random and name it target. This is the target of the sound change
     target = random.choice(list(onset))
@@ -157,7 +157,7 @@ the conditioning environment is the onset or the coda.
 def change_nucleus():
     #call the lexicon list and the nucleus set
     global lexicon, nucleus
-    #prepare a new empty list, that will be filled with the form of the words after the sound change apply
+    #prepare a new empty list, that will be filled with the form of the words after the sound change applies
     new_lexicon = []
     #pick a nucleus at random and name it target. This is the target of the sound change
     target = random.choice(list(nucleus))
@@ -189,7 +189,7 @@ def change_nucleus():
 def change_nucleus2():
     #call the lexicon list and the nucleus set
     global lexicon, nucleus
-    #prepare a new empty list, that will be filled with the form of the words after the sound change apply
+    #prepare a new empty list, that will be filled with the form of the words after the sound change applies
     new_lexicon = []
     #pick a nucleus at random and name it target. This is the target of the sound change
     target = random.choice(list(nucleus))
@@ -226,7 +226,7 @@ Finally, this function changes the coda consonant.
 def change_coda():
     #call the lexicon list and the coda set
     global lexicon, coda
-    #prepare a new empty list, that will be filled with the form of the words after the sound change apply
+    #prepare a new empty list, that will be filled with the form of the words after the sound change applies
     new_lexicon = []
     #pick a coda at random and name it target. This is the target of the sound change
     target = random.choice(list(coda))
