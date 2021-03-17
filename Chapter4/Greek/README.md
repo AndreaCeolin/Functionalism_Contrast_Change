@@ -4,7 +4,7 @@ The folder contains the following files:
 
 1. **paido-greek.py**: a Python3 script to extract production accuracies from the Paidologos [Greek](https://phonbank.talkbank.org/access/Other/Greek/PaidoGreek) Corpus.
 
-2. **greek-extracton.py**: this is the Python3 script used to obtain a Greek corpus from the [Greek SUBTLEX] corpus (https://github.com/hermitdave/FrequencyWords/content/2018/el) and from GreekLex (https://www.psychology.nottingham.ac.uk/greeklex/).
+2. **greek-extracton.py**: this is the Python3 script used to obtain a Greek corpus from the [Greek SUBTLEX](https://github.com/hermitdave/FrequencyWords/content/2018/el) corpus  and from [GreekLex](https://www.psychology.nottingham.ac.uk/greeklex/).
 
 3. **grk-corpus.txt**: this is the output of the ```greek-extraction.py``` script.
 
