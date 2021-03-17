@@ -1,4 +1,4 @@
-# Functionalism_Contrast_Change - Chapter 4
+# Chapter 4
   
 This folder contains the material developed for the analyses in Chapter 4. The material is divided in the following folders:
 
