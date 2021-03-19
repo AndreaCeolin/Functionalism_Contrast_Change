@@ -1,5 +1,7 @@
 # Functionalism_Contrast_Change
-This repository contains the software and the material developed for my PhD dissertation. I expect to upload the remaining material and publish the repository by March 2021. 
+This repository contains the software and the material developed for my PhD dissertation. 
+
+The code contained in this repository is licensed under MIT license. For the material drawn from other sources, please refer to the links included in the repository.
 
 The files are divided in the following folders:
 
