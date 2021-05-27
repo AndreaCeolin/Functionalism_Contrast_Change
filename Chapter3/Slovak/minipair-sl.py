@@ -60,7 +60,7 @@ Print the minimal pairs along with their count
 '''
 
 minimal_pairs(wordlist, 'ľ')
-#minimal_pairs(wordlist, 'ľ')
+#minimal_pairs(wordlist, 'ä')
 
 
 '''

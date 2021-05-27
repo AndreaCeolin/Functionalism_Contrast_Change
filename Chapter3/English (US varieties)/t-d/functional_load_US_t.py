@@ -83,7 +83,6 @@ was found after the publication. The results and the conclusions do not change s
 functional_load(words_tokens, 'T', 'D')
 functional_load(words_tokens, 'P', 'B')
 functional_load(words_tokens, 'F', 'V')
-functional_load(words_tokens, 'TH', 'DH')
 functional_load(words_tokens, 'S', 'Z')
 functional_load(words_tokens, 'SH', 'ZH')
 functional_load(words_tokens, 'CH', 'JH')
