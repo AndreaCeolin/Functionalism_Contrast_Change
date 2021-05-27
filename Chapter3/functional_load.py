@@ -21,7 +21,7 @@ toy = 'atuattatuatatautuaattuua'
 
 
 '''
-This function extracts ngrams from  text
+This function extracts ngrams from text
 '''
 
 def ngrams(text, k=1):
